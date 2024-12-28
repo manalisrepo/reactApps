@@ -1,0 +1,77 @@
+<html !DOCTYPE>
+  <head>
+    <title>Starting with JSX</title>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      const tableStyle = {
+        borderCollapse: "collapse", // Ensures borders between cells collapse into one
+        width: "30%", // Optional, to make the table fill its container
+        td: {
+          border: "1px solid black" /* Border around table cells */,
+          padding: "8px" /* Padding inside each cell */,
+          textAlign: "left",
+        },
+      };
+      const studentArray = [
+        {
+          name: "s1",
+          age: 10,
+          marks: 25,
+        },
+        {
+          name: "s2",
+          age: 11,
+          marks: 23,
+        },
+        {
+          name: "s3",
+          age: 19,
+          marks: 30,
+        },
+      ];
+      function App() {
+        return (
+          <>
+            <h2>Student Details</h2>
+            <table style={tableStyle}>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Age</th>
+                  <th>Marks</th>
+                </tr>
+              </thead>
+              <tbody>
+                {studentArray.map((student, index) => (
+                  <tr key={index}>
+                    <td>
+                      <h4>{student.name}</h4>
+                    </td>
+                    <td>
+                      <h4>{student.age}</h4>
+                    </td>
+                    <td>
+                      <h4>{student.marks}</h4>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </>
+        );
+      }
+      ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+  <head>
+    <title>Starting with JSX</title>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <link href="index.css" rel="stylesheet"/>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      function StudentPage() {
+        const tableStyle = {
+        borderCollapse: "collapse", // Ensures borders between cells collapse into one
+        width: "30%", // Optional, to make the table fill its container
+        td: {
+          border: "1px solid black" /* Border around table cells */,
+          padding: "8px" /* Padding inside each cell */,
+          textAlign: "left",
+        },
+       };
+       const studentArray = [
+        {
+          name: "s1",
+          age: 10,
+          marks: 25,
+        },
+        {
+          name: "s2",
+          age: 11,
+          marks: 23,
+        },
+        {
+          name: "s3",
+          age: 19,
+          marks: 30,
+        },
+      ];
+      return (
+          <>
+            <h2>Student Details</h2>
+            <table style={tableStyle}>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Age</th>
+                  <th>Marks</th>
+                </tr>
+              </thead>
+              <tbody>
+                {studentArray.map((student, index) => (
+                  <tr key={index}>
+                    <td>
+                      <h4>{student.name}</h4>
+                    </td>
+                    <td>
+                      <h4>{student.age}</h4>
+                    </td>
+                    <td>
+                      <h4>{student.marks}</h4>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </>
+        );
+      }
+      function CarPage() {
+        let cars = [
+          {
+            name: "AUDI",
+            average: 10,
+            img: "https://png.pngtree.com/png-vector/20190130/ourmid/pngtree-simple-yellow-car-cartoon-design-elementvehicle-design-png-image_603264.jpg",
+          },
+          {
+            name: "Nexa",
+            average: 60,
+            img: "https://png.pngtree.com/png-vector/20190130/ourmid/pngtree-simple-yellow-car-cartoon-design-elementvehicle-design-png-image_603264.jpg",
+          },
+          {
+            name: "BMW",
+            average: 50,
+            img: "https://png.pngtree.com/png-vector/20190130/ourmid/pngtree-simple-yellow-car-cartoon-design-elementvehicle-design-png-image_603264.jpg",
+          },
+        ];
+        return (
+          <>
+            <table>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Image</th>
+                  <th>Average</th>
+                </tr>
+              </thead>
+              <tbody>
+                {cars.map((c, index) => {
+                  return (
+                    <tr key={index}>
+                    <td><img src={c.img} alt={c.name}/></td>
+                    <td>{c.name}</td>
+                    <td>{c.average}</td>
+                  </tr>
+                  )
+                })}
+              </tbody>
+            </table>
+          </>
+        );
+      }
+      const rootElem = ReactDOM.createRoot(document.getElementById("root"));
+      rootElem.render(<App />);
+      function App() {
+        /***************Conditional rendering based on if-else operator******************/
+        let showCars = false;
+        if (showCars) {
+          return <CarPage/>
+        } else {
+          return <StudentPage/>
+        }
+        /***************Conditional rendering based on AND operator******************/
+        // let loggedIn = true;
+        // return (
+        //   <>
+        //   <h3> Hi {loggedIn?"Alexa":"User"} </h3>
+        //     <p> {loggedIn && "Welcome to heaven."}
+        //     </p>
+        //   </>
+        // )
+        /***************Conditional rendering based on OR operator******************/
+        // let firstName = 'Alexa';
+        // let lastName = 'Diaz';
+        // return (
+        //   <>
+        //   <h3> Hi {loggedIn? lastName || firstName : "User"} </h3>
+        //     <p> {loggedIn && "Welcome to heaven."}
+        //     </p>
+        //   </>
+        // )
+      }
+    </script>
+  </body>
+</html>
