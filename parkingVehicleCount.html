@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <title>React App</title>
+  </head>
+
+  <body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+      let car = 0;
+      let bike = 0;
+      let scooty = 0;
+      let bicycle = 0;
+      const carRef = React.createRef();
+      const bikeRef = React.createRef();
+      const scootyRef = React.createRef();
+      const bicycleRef = React.createRef();
+      function increase(type) {
+        debugger;
+        if (type === "car") {
+          car = car + 1;
+        } else if (type === "bike") {
+          bike = bike + 1;
+        } else if (type === "scooty") {
+          scooty = scooty + 1;
+        } else if (type === "bicycle") {
+          bicycle = bicycle + 1;
+        }
+        renderCounts();
+      }
+      function decrease(type) {
+        if (type === "car" && car > 0) {
+          car = car - 1;
+        } else if (type === "bike" && bike > 0) {
+          bike = bike - 1;
+        } else if (type === "scooty" && scooty > 0) {
+          scooty = scooty - 1;
+        } else if (type === "bicycle" && bicycle > 0) {
+          bicycle = bicycle - 1;
+        }
+        renderCounts();
+      }
+      function renderCounts() {
+        // Update the text content of the span elements with the current counts
+        if (carRef.current) carRef.current.innerText = car;
+        if (bikeRef.current) bikeRef.current.innerText = bike;
+        if (scootyRef.current) scootyRef.current.innerText = scooty;
+        if (bicycleRef.current) bicycleRef.current.innerText = bicycle;
+      }
+      // Create handlers to increase and decrease vehicle count here
+
+      const App = () => (
+        <>
+          <p>List of all the vehicles count in the parking.</p>
+          <ol>
+            <li>
+              <p>
+                <b>
+                  Car: <span ref={carRef}>{car}</span>
+                </b>{" "}
+                &emsp;
+                {/* Add increase and decrease count buttons here */}
+                <button onClick={() => increase("car")}>Increase</button>&nbsp;
+                <button onClick={() => decrease("car")}>Decrease</button>
+              </p>
+            </li>
+            <li>
+              <p>
+                <b>
+                  Bike: <span ref={bikeRef}>{bike}</span>
+                </b>{" "}
+                &emsp;
+                {/* Add increase and decrease count buttons here */}
+                <button onClick={() => increase("bike")}>Increase</button>&nbsp;
+                <button onClick={() => decrease("bike")}>Decrease</button>
+              </p>
+            </li>
+            <li>
+              <p>
+                <b>Scooty: <span ref={scootyRef}>{scooty}</span>
+                </b>{" "}
+                &emsp;
+                {/* Add increase and decrease count buttons here */}
+                <button onClick={() => increase("scooty")}>Increase</button>&nbsp;
+                <button onClick={() => decrease("scooty")}>Decrease</button>
+              </p>
+            </li>
+            <li>
+              <p>
+                <b>Bicycle:<span ref={bicycleRef}>{bicycle}</span>
+                </b>{" "}
+                &emsp;
+                {/* Add increase and decrease count buttons here */}
+                <button onClick={() => increase("bicycle")}>Increase</button>&nbsp;
+                <button onClick={() => decrease("bicycle")}>Decrease</button>
+              </p>
+            </li>
+          </ol>
+        </>
+      );
+
+      const rootElement = ReactDOM.createRoot(document.getElementById("root"));
+      rootElement.render(<App />);
+      renderCounts();
+    </script>
+  </body>
+</html>

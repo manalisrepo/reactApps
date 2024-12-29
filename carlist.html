@@ -1,0 +1,49 @@
+<html !DOCTYPE>
+  <head>
+    <title>Starting with JSX</title>
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.development.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="text/babel">
+      function App() {
+        const olStyle = {
+          listStyleType: "", // Removes the default numbers or markers
+          paddingLeft: 0, // Removes indentation
+        };
+        const cars = [
+          "BMW",
+          "Tesla",
+          "Land Rover",
+          "Toyota",
+          "Cooper",
+          "Suzuki",
+          "Bugatti",
+          "Mitsubishi",
+          "Porsche",
+        ];
+        return (
+          <>
+            <h2>List of Car Brand Names</h2>
+            <ul style={olStyle}>
+              {cars.map((car, index) => (
+                <li key={index}>
+                  <h5>{car}</h5>
+                </li>
+              ))}
+            </ul>
+          </>
+        );
+      }
+      ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+    </script>
+  </body>
+</html>
