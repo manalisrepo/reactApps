@@ -28,6 +28,7 @@
         gap: 10px;
         width: 60%;
         margin: 0 auto;
+        align-items: center;
       }
     </style>
   </head>
@@ -39,16 +40,27 @@
       // Do not change the classNames of the elements from the default markup
 
       // Create the state variables for name, email, and about.
+      const nameRef = React.createRef();
+      const emailRef = React.createRef();
+      const aboutRef = React.createRef();
       // Add onChange handlers for each input field to capture the user input.
       function onSubmit(event) {
-        console.log(event);
+        // if (event.key === "Enter") {
+        // event.preventDefault(); // Prevent form submission
+        console.log({
+          name: nameRef.current.value,
+          email: emailRef.current.value,
+          about: aboutRef.current.value,
+        });
+        rootElement.render(<App />);
+        // }
       }
       const Card = () => (
         <div className="card">
           {/* Display the values of name, email, and about dynamically */}
-          <h3>Name:</h3>
-          <p>Email: </p>
-          <p>About: </p>
+          <h3>Name: {nameRef.current && nameRef.current.value}</h3>
+          <p>Email: {emailRef.current && emailRef.current.value}</p>
+          <p>About: {aboutRef.current && aboutRef.current.value}</p>
         </div>
       );
 
@@ -58,10 +70,14 @@
           <Card />
           <div className="inputs">
             {/* Add onChange event handlers to capture the input value */}
-            <form onChange={onSubmit}>
-              <input placeholder="Name" />
-              <input type="email" placeholder="Email" />
-              <textarea placeholder="About"></textarea>
+            <form onKeyPress={onSubmit}>
+              <input placeholder="Name" ref={nameRef} />
+              <br />
+              <br />
+              <input type="email" placeholder="Email" ref={emailRef} />
+              <br />
+              <br />
+              <textarea placeholder="About" ref={aboutRef}></textarea>
             </form>
           </div>
         </div>
